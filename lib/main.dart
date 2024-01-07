@@ -8,6 +8,7 @@ import 'common/routes/router.dart';
 import 'common/services/dio_service.dart';
 import 'common/services/env_service.dart';
 import 'common/services/logger_service.dart';
+import 'common/services/theme_service.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,11 +47,9 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp.router(
       routerConfig: router,
       title: 'IMDB Clone',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: ThemeService().getThemeData(),
       debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.dark,
     );
   }
 }
