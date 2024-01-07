@@ -8,6 +8,7 @@ class SharedPreferencesService {
 
   SharedPreferencesService._internal() {
     LoggerService().simple("SHARED PREFS SERVICE CREATED");
+    init();
   }
 
   factory SharedPreferencesService() {
