@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import 'logger_service.dart';
 
 class EnvironmentService {
@@ -19,8 +21,12 @@ class EnvironmentService {
   // API Base URL
   final String _apiBaseUrl = "https://api.themoviedb.org/3";
 
+  // Navigation Key
+  final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
+
   // Getters
   String get apiKey => _apiKey;
   String get apiBearerToken => _apiBearerToken;
   String get apiBaseUrl => _apiBaseUrl;
+  GlobalKey<NavigatorState> get navigatorKey => _navigatorKey;
 }
