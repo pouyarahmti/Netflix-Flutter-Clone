@@ -42,6 +42,7 @@ class _IntroScreenState extends State<IntroScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+        top: false,
         child: PageView.builder(
           itemCount: _introTitles.length,
           controller: _pageController,
