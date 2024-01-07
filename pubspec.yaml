@@ -24,6 +24,8 @@ dependencies:
   google_fonts: ^4.0.3
   fluttertoast: ^8.2.4
   logger: ^2.0.2+1
+  url_launcher: ^6.1.6
+  flutter_riverpod: ^2.4.9
 
 dev_dependencies:
   flutter_test:
