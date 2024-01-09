@@ -31,7 +31,7 @@ class _LoginFormState extends State<LoginForm> {
   bool _isLoading = false;
 
   // TEXT EDITING CONTROLLERS
-  final TextEditingController _phoneNumberOrEmailTextEditingController =
+  final TextEditingController _emailTextEditingController =
       TextEditingController();
   final TextEditingController _passwordTextEditingController =
       TextEditingController();
@@ -44,7 +44,7 @@ class _LoginFormState extends State<LoginForm> {
 
   void initFormData() {
     _formData = {
-      "phoneNumberOrEmail": _phoneNumberOrEmailTextEditingController.text,
+      "email": _emailTextEditingController.text,
       "password": _passwordTextEditingController.text,
     };
   }
@@ -60,6 +60,7 @@ class _LoginFormState extends State<LoginForm> {
         _isLoading = true;
       });
       try {
+        ToastService().showErrorToast("HELLO");
         // final loginResponse = await AuthService().login(_formData);
         // LoggerService().simple("LOGIN SUCCESSFUL: $loginResponse");
         // ToastService().success(context, "Login Successful");
@@ -101,11 +102,11 @@ class _LoginFormState extends State<LoginForm> {
             height: 16,
           ),
           StringFormField(
-            controller: _phoneNumberOrEmailTextEditingController,
+            controller: _emailTextEditingController,
             onSubmit: (value) {
-              String? result = UtilsManager.validation.validateEmpty(value);
-              if (result != null) return result;
-              _formData['phoneNumberOrEmail'] = value;
+              // String? result = UtilsManager.validation.validateEmpty(value);
+              // if (result != null) return result;
+              _formData['email'] = value;
             },
             label: "Email",
             placeholder: "Enter your email",
@@ -115,8 +116,8 @@ class _LoginFormState extends State<LoginForm> {
           ),
           PasswordFormField(
             onSubmit: (value) {
-              String? result = UtilsManager.validation.validateEmpty(value);
-              if (result != null) return result;
+              // String? result = UtilsManager.validation.validateEmpty(value);
+              // if (result != null) return result;
               _formData["password"] = value;
             },
             controller: _passwordTextEditingController,

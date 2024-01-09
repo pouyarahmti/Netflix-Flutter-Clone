@@ -1,12 +1,12 @@
 import 'package:go_router/go_router.dart';
 import 'package:imdb_clone/intro/screens/splash_screen.dart';
-import 'package:imdb_clone/common/services/env_service.dart';
+import 'package:imdb_clone/main.dart';
 
 import '../../auth/screens/login_screen.dart';
 import '../../intro/screens/intro_screen.dart';
 
 final router = GoRouter(
-  navigatorKey: EnvironmentService().navigatorKey,
+  navigatorKey: navigatorKey,
   initialLocation: "/",
   routes: [
     GoRoute(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:imdb_clone/common/services/url_launcher_service.dart';
 
 import '../../common/services/theme_service.dart';
