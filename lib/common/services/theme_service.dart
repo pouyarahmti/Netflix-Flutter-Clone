@@ -29,6 +29,11 @@ class ThemeService {
       scaffoldBackgroundColor: colorScheme.background,
       canvasColor: colorScheme.background,
       cardColor: colorScheme.surface,
+      textSelectionTheme: TextSelectionThemeData(
+        cursorColor: colorScheme.secondary,
+        selectionHandleColor: colorScheme.secondary,
+        selectionColor: Colors.grey.shade300,
+      ),
       bottomAppBarTheme: BottomAppBarTheme(
         color: colorScheme.surface,
       ),
