@@ -4,6 +4,8 @@ import 'package:imdb_clone/main.dart';
 
 import '../../auth/screens/forget_password_screen.dart';
 import '../../auth/screens/login_screen.dart';
+import '../../auth/screens/signup_screen.dart';
+import '../../home/screens/home_screen.dart';
 import '../../intro/screens/intro_screen.dart';
 
 final router = GoRouter(
@@ -21,15 +23,26 @@ final router = GoRouter(
       builder: (context, state) => const IntroScreen(),
     ),
     GoRoute(
-        path: LoginScreen.routeName,
-        name: LoginScreen.routeName,
-        builder: (context, state) => const LoginScreen(),
-        routes: [
-          GoRoute(
-            path: ForgetPasswordScreen.routeName,
-            name: ForgetPasswordScreen.routeName,
-            builder: (context, state) => const ForgetPasswordScreen(),
-          )
-        ]),
+      path: LoginScreen.routeName,
+      name: LoginScreen.routeName,
+      builder: (context, state) => const LoginScreen(),
+      routes: [
+        GoRoute(
+          path: ForgetPasswordScreen.routeName,
+          name: ForgetPasswordScreen.routeName,
+          builder: (context, state) => const ForgetPasswordScreen(),
+        ),
+        GoRoute(
+          path: SignUpScreen.routeName,
+          name: SignUpScreen.routeName,
+          builder: (context, state) => const SignUpScreen(),
+        ),
+      ],
+    ),
+    GoRoute(
+      path: HomeScreen.routeName,
+      name: HomeScreen.routeName,
+      builder: (context, state) => const HomeScreen(),
+    )
   ],
 );

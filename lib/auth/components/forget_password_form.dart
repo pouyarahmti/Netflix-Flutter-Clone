@@ -3,10 +3,12 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:imdb_clone/common/services/url_launcher_service.dart';
 
 import '../../common/components/buttons/fill_button.dart';
 
 import '../../common/components/form_fields/form_fields/string_form_field.dart';
+import '../../common/services/dialog_service.dart';
 import '../../common/services/logger_service.dart';
 import '../../common/services/theme_service.dart';
 import '../../common/services/toast_service.dart';
@@ -28,8 +30,6 @@ class _ForgetPasswordFormState extends State<ForgetPasswordForm> {
   // TEXT EDITING CONTROLLERS
   final TextEditingController _emailTextEditingController =
       TextEditingController();
-  final TextEditingController _passwordTextEditingController =
-      TextEditingController();
 
   @override
   void initState() {
@@ -40,14 +40,14 @@ class _ForgetPasswordFormState extends State<ForgetPasswordForm> {
   void initFormData() {
     _formData = {
       "email": _emailTextEditingController.text,
-      "password": _passwordTextEditingController.text,
     };
   }
 
   void login() async {
     if (!_formKey.currentState!.validate()) {
       LoggerService().warning(
-          title: "LOGIN FORM - INVALID FORM", message: json.encode(_formData));
+          title: "FORGET PASSWORD FORM - INVALID FORM",
+          message: json.encode(_formData));
       // ToastService().error(context, "FORM INVALID");
       return;
     } else {
@@ -55,17 +55,17 @@ class _ForgetPasswordFormState extends State<ForgetPasswordForm> {
         _isLoading = true;
       });
       try {
-        ToastService().showErrorToast("HELLO");
-        // final loginResponse = await AuthService().login(_formData);
-        // LoggerService().simple("LOGIN SUCCESSFUL: $loginResponse");
-        // ToastService().success(context, "Login Successful");
-
-        // await SecureStorageService()
-        //     .write(key: "token", value: loginResponse['tokens']['access']);
-        // Future.delayed(const Duration(seconds: 1), () {
-        //   ToastService().hide(context);
-        //   context.goNamed(HomeScreen.routeName);
-        // });
+        await Future.delayed(const Duration(seconds: 2));
+        DialogsService().showAlertDialog(
+          context: context,
+          title: "Check your email",
+          message:
+              "We've sent you an email with a link to reset your password. Please check your email.",
+          buttonText: "Go to mail",
+          onPressed: () {
+            UrlLauncherService().openEmail(address: "email");
+          },
+        );
       } on DioException catch (e) {
         LoggerService().error(title: "LOGIN ERROR", message: e);
         // ToastService().error(context, "Error occurred: ${e.response}");
@@ -111,8 +111,8 @@ class _ForgetPasswordFormState extends State<ForgetPasswordForm> {
           StringFormField(
             controller: _emailTextEditingController,
             onSubmit: (value) {
-              // String? result = UtilsManager.validation.validateEmpty(value);
-              // if (result != null) return result;
+              String? result = UtilsManager.validation.validateEmail(value);
+              if (result != null) return result;
               _formData['email'] = value;
             },
             label: "Email",
@@ -122,8 +122,10 @@ class _ForgetPasswordFormState extends State<ForgetPasswordForm> {
             height: 40,
           ),
           _isLoading
-              ? const Center(
-                  child: CircularProgressIndicator(),
+              ? Center(
+                  child: CircularProgressIndicator(
+                    color: ThemeService().currentTheme.secondary,
+                  ),
                 )
               : FillButton(
                   buttonText: "Send",

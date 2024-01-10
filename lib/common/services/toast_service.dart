@@ -69,10 +69,10 @@ class Toast extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.95,
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: ThemeService().currentTheme.danger,
+        color: color,
       ),
       child: Text(
         message,

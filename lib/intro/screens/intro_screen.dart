@@ -109,7 +109,7 @@ class _IntroScreenState extends State<IntroScreen> {
                           } else {
                             _pageController.nextPage(
                               duration: const Duration(milliseconds: 300),
-                              curve: Curves.easeIn,
+                              curve: Curves.ease,
                             );
                           }
                         },

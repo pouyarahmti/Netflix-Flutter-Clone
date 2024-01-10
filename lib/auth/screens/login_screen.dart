@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:imdb_clone/common/services/url_launcher_service.dart';
 
 import '../../common/services/theme_service.dart';
 import '../components/login_form.dart';
 import '../components/login_icons_container.dart';
+import 'signup_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -89,7 +91,9 @@ class LoginScreen extends StatelessWidget {
                                   fontSize: 16,
                                 ),
                           ),
-                          onTap: () {},
+                          onTap: () {
+                            context.pushNamed(SignUpScreen.routeName);
+                          },
                         ),
                       ),
                     ],

@@ -108,7 +108,7 @@ class _GenericTextFieldState extends State<GenericTextField> {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // TEXT FIELD
 
@@ -121,7 +121,6 @@ class _GenericTextFieldState extends State<GenericTextField> {
             autocorrect: widget.autocorrect,
             maxLines: widget.maxLines,
             cursorColor: ThemeService().currentTheme.secondary,
-
             // Set the errorText value here
             validator: (value) {
               setState(() {
@@ -140,7 +139,7 @@ class _GenericTextFieldState extends State<GenericTextField> {
             obscureText: _hideText,
             keyboardType: widget.type,
             style: const TextStyle(
-              color: Color(0xff7D7D7F),
+              color: Colors.white,
             ),
             enableSuggestions: widget.enableSuggestions,
             textInputAction: TextInputAction.done,
@@ -159,13 +158,13 @@ class _GenericTextFieldState extends State<GenericTextField> {
               alignLabelWithHint: true,
 
               labelStyle: const TextStyle(
-                color: Color(0xff5D5D5F),
+                color: Colors.white,
               ),
               // Hide Error Text
               errorStyle: TextStyle(
                 height: -1,
                 fontSize: 0,
-                color: Theme.of(context).colorScheme.primary,
+                color: Theme.of(context).colorScheme.secondary,
               ),
               suffixIcon: _renderSuffixIcon(),
               enabledBorder: OutlineInputBorder(
@@ -213,6 +212,21 @@ class _GenericTextFieldState extends State<GenericTextField> {
             ),
           ),
         ),
+        if (_errorText != null)
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 8,
+              ),
+              Text(
+                _errorText!,
+                style: ThemeService().currentTheme.textDefault.copyWith(
+                      color: ThemeService().currentTheme.danger,
+                    ),
+              ),
+            ],
+          ),
       ],
     );
   }

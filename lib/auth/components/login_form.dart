@@ -13,6 +13,7 @@ import '../../common/services/logger_service.dart';
 import '../../common/services/theme_service.dart';
 import '../../common/services/toast_service.dart';
 import '../../common/utils/utils_manager.dart';
+import '../../home/screens/home_screen.dart';
 import '../screens/forget_password_screen.dart';
 // import '../../common/utils/utils_manager.dart';
 // import '../../home/screens/home_screen.dart';
@@ -62,24 +63,11 @@ class _LoginFormState extends State<LoginForm> {
         _isLoading = true;
       });
       try {
-        DialogsService().showAlertDialog(
-            context: context,
-            title: "Check your email",
-            message:
-                "We've sent you an email with a link to reset your password. Please check your email.",
-            buttonText: "Go to mail",
-            onPressed: () {});
-        // ToastService().showErrorToast("HELLO");
-        // final loginResponse = await AuthService().login(_formData);
-        // LoggerService().simple("LOGIN SUCCESSFUL: $loginResponse");
-        // ToastService().success(context, "Login Successful");
-
-        // await SecureStorageService()
-        //     .write(key: "token", value: loginResponse['tokens']['access']);
-        // Future.delayed(const Duration(seconds: 1), () {
-        //   ToastService().hide(context);
-        //   context.goNamed(HomeScreen.routeName);
-        // });
+        await Future.delayed(
+          const Duration(seconds: 2),
+        );
+        ToastService().showSuccessToast("Login Successful");
+        context.goNamed(HomeScreen.routeName);
       } on DioException catch (e) {
         LoggerService().error(title: "LOGIN ERROR", message: e);
         // ToastService().error(context, "Error occurred: ${e.response}");
@@ -113,8 +101,8 @@ class _LoginFormState extends State<LoginForm> {
           StringFormField(
             controller: _emailTextEditingController,
             onSubmit: (value) {
-              // String? result = UtilsManager.validation.validateEmpty(value);
-              // if (result != null) return result;
+              String? result = UtilsManager.validation.validateEmail(value);
+              if (result != null) return result;
               _formData['email'] = value;
             },
             label: "Email",
@@ -125,8 +113,8 @@ class _LoginFormState extends State<LoginForm> {
           ),
           PasswordFormField(
             onSubmit: (value) {
-              // String? result = UtilsManager.validation.validateEmpty(value);
-              // if (result != null) return result;
+              String? result = UtilsManager.validation.validateEmpty(value);
+              if (result != null) return result;
               _formData["password"] = value;
             },
             controller: _passwordTextEditingController,
@@ -155,8 +143,10 @@ class _LoginFormState extends State<LoginForm> {
             height: 40,
           ),
           _isLoading
-              ? const Center(
-                  child: CircularProgressIndicator(),
+              ? Center(
+                  child: CircularProgressIndicator(
+                    color: ThemeService().currentTheme.secondary,
+                  ),
                 )
               : FillButton(
                   buttonText: "Login",
