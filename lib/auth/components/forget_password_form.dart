@@ -6,26 +6,20 @@ import 'package:go_router/go_router.dart';
 
 import '../../common/components/buttons/fill_button.dart';
 
-import '../../common/components/form_fields/form_fields/password_form_field.dart';
 import '../../common/components/form_fields/form_fields/string_form_field.dart';
 import '../../common/services/logger_service.dart';
 import '../../common/services/theme_service.dart';
 import '../../common/services/toast_service.dart';
 import '../../common/utils/utils_manager.dart';
-import '../screens/forget_password_screen.dart';
-// import '../../common/utils/utils_manager.dart';
-// import '../../home/screens/home_screen.dart';
-// import '../screens/forget_password_screen.dart';
-// import '../services/auth_service.dart';
 
-class LoginForm extends StatefulWidget {
-  const LoginForm({super.key});
+class ForgetPasswordForm extends StatefulWidget {
+  const ForgetPasswordForm({super.key});
 
   @override
-  State<LoginForm> createState() => _LoginFormState();
+  State<ForgetPasswordForm> createState() => _ForgetPasswordFormState();
 }
 
-class _LoginFormState extends State<LoginForm> {
+class _ForgetPasswordFormState extends State<ForgetPasswordForm> {
   final _formKey = GlobalKey<FormState>();
   late Map<String, dynamic> _formData;
 
@@ -94,10 +88,22 @@ class _LoginFormState extends State<LoginForm> {
             height: MediaQuery.of(context).size.height * 0.1,
           ),
           Text(
-            "Login",
+            "Forgot Password?",
             style: ThemeService().currentTheme.title.copyWith(
                   fontSize: 40,
                 ),
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.85,
+            child: Text(
+              "Enter the email indicated upon registration, and we will send you password recovery link",
+              style: ThemeService().currentTheme.textDefault.copyWith(
+                    color: const Color(0xff69696C),
+                  ),
+            ),
           ),
           const SizedBox(
             height: 16,
@@ -113,37 +119,6 @@ class _LoginFormState extends State<LoginForm> {
             placeholder: "Enter your email",
           ),
           const SizedBox(
-            height: 16,
-          ),
-          PasswordFormField(
-            onSubmit: (value) {
-              // String? result = UtilsManager.validation.validateEmpty(value);
-              // if (result != null) return result;
-              _formData["password"] = value;
-            },
-            controller: _passwordTextEditingController,
-            label: "Password",
-            placeholder: "Enter your password",
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: GestureDetector(
-              onTap: () {
-                context.pushNamed(ForgetPasswordScreen.routeName);
-              },
-              child: Text(
-                "Forgot your password?",
-                style: ThemeService().currentTheme.textDefault.copyWith(
-                      color: Colors.white,
-                    ),
-                textAlign: TextAlign.justify,
-              ),
-            ),
-          ),
-          const SizedBox(
             height: 40,
           ),
           _isLoading
@@ -151,7 +126,7 @@ class _LoginFormState extends State<LoginForm> {
                   child: CircularProgressIndicator(),
                 )
               : FillButton(
-                  buttonText: "Login",
+                  buttonText: "Send",
                   onTap: login,
                 ),
         ],
