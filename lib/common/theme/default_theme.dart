@@ -137,19 +137,17 @@ class DefaultTheme {
   TextStyle get hyperLink => _hyperLink;
 
   late final TextStyle _title = TextStyle(
-    fontFamily: "Poppins",
     fontStyle: FontStyle.normal,
     fontWeight: FontWeight.bold,
     fontSize: 24.0,
     color: _fontWhite,
   );
 
-  late final TextStyle _subtitle = TextStyle(
-    fontFamily: "Poppins",
+  late final TextStyle _subtitle = const TextStyle(
     fontStyle: FontStyle.normal,
     fontWeight: FontWeight.normal,
     fontSize: 15.0,
-    color: _fontWhite,
+    color: Color(0xff69696C),
   );
 
   TextStyle get title => _title;

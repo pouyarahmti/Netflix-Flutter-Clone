@@ -8,6 +8,7 @@ import '../../common/components/buttons/fill_button.dart';
 
 import '../../common/components/form_fields/form_fields/password_form_field.dart';
 import '../../common/components/form_fields/form_fields/string_form_field.dart';
+import '../../common/services/dialog_service.dart';
 import '../../common/services/logger_service.dart';
 import '../../common/services/theme_service.dart';
 import '../../common/services/toast_service.dart';
@@ -61,7 +62,14 @@ class _LoginFormState extends State<LoginForm> {
         _isLoading = true;
       });
       try {
-        ToastService().showErrorToast("HELLO");
+        DialogsService().showAlertDialog(
+            context: context,
+            title: "Check your email",
+            message:
+                "We've sent you an email with a link to reset your password. Please check your email.",
+            buttonText: "Go to mail",
+            onPressed: () {});
+        // ToastService().showErrorToast("HELLO");
         // final loginResponse = await AuthService().login(_formData);
         // LoggerService().simple("LOGIN SUCCESSFUL: $loginResponse");
         // ToastService().success(context, "Login Successful");
