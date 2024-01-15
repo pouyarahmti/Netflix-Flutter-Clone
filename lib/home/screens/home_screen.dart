@@ -22,44 +22,112 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   bool _isLoading = false;
   final List<Movie> _nowPlayingMovies = [];
+  final List<Movie> _popularMovies = [];
+  final List<Movie> _topRatedMovies = [];
+  final List<Movie> _upcomingMovies = [];
 
   @override
   void initState() {
-    getNowPlayingMovies();
+    getMovies();
     super.initState();
   }
 
-  void getNowPlayingMovies() async {
+  void getMovies() async {
     try {
       setState(() {
         _isLoading = true;
       });
-
-      final getNowPlayingMoviesResponse =
-          await MoviesService().getNowPlayingMovies();
-
-      LoggerService().simple(
-          "GET NOW PLAYING MOVIES SUCCESSFUL: $getNowPlayingMoviesResponse");
-
-      final nowPlayingMovies = List<Movie>.from(
-        getNowPlayingMoviesResponse['results'].map(
-          (element) => Movie.fromJson(
-            element,
-          ),
-        ),
-      );
-
-      setState(() {
-        _nowPlayingMovies.addAll(nowPlayingMovies);
-      });
+      await MoviesService().getMovieGenres();
+      Future.wait([
+        getNowPlayingMovies(),
+        getPopularMovies(),
+        getTopRatedMovies(),
+        getUpcomingMovies(),
+      ]);
     } on DioException catch (e) {
-      LoggerService()
-          .error(title: "GET NOW PLAYING MOVIES FAILED:", message: e.response);
+      LoggerService().error(title: "GET MOVIES FAILED:", message: e.response);
     } finally {
       setState(() {
         _isLoading = false;
       });
     }
+  }
+
+  Future<void> getPopularMovies() async {
+    final getPopularMoviesResponse = await MoviesService().getPopularMovies();
+
+    LoggerService()
+        .simple("GET POPULAR MOVIES SUCCESSFUL: $getPopularMoviesResponse");
+
+    final popularMovies = List<Movie>.from(
+      getPopularMoviesResponse['results'].map(
+        (element) => Movie.fromJson(
+          element,
+        ),
+      ),
+    );
+
+    setState(() {
+      _popularMovies.addAll(popularMovies);
+    });
+  }
+
+  Future<void> getNowPlayingMovies() async {
+    final getNowPlayingMoviesResponse =
+        await MoviesService().getNowPlayingMovies();
+
+    LoggerService().simple(
+        "GET NOW PLAYING MOVIES SUCCESSFUL: $getNowPlayingMoviesResponse");
+
+    final nowPlayingMovies = List<Movie>.from(
+      getNowPlayingMoviesResponse['results'].map(
+        (element) => Movie.fromJson(
+          element,
+        ),
+      ),
+    );
+
+    setState(() {
+      _nowPlayingMovies.addAll(nowPlayingMovies);
+    });
+  }
+
+  Future<void> getTopRatedMovies() async {
+    final getTopRatedMoviesResponse = await MoviesService().getTopRatedMovies();
+
+    LoggerService()
+        .simple("GET TOP RATED MOVIES SUCCESSFUL: $getTopRatedMoviesResponse");
+
+    final topRatedMovies = List<Movie>.from(
+      getTopRatedMoviesResponse['results'].map(
+        (element) => Movie.fromJson(
+          element,
+        ),
+      ),
+    );
+
+    setState(() {
+      _topRatedMovies.addAll(topRatedMovies);
+    });
+  }
+
+  Future<void> getUpcomingMovies() async {
+    final getUpcomingMoviesResponse = await MoviesService().getUpcomingMovies();
+
+    LoggerService()
+        .simple("GET UPCOMING MOVIES SUCCESSFUL: $getUpcomingMoviesResponse");
+
+    final upcomingMovies = List<Movie>.from(
+      getUpcomingMoviesResponse['results'].map(
+        (element) => Movie.fromJson(
+          element,
+        ),
+      ),
+    );
+
+    setState(() {
+      _upcomingMovies.addAll(upcomingMovies);
+    });
   }
 
   @override
@@ -76,8 +144,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: ThemeService().currentTheme.secondary,
               ))
             : SafeArea(
+                bottom: false,
                 child: Padding(
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
                   child: CustomScrollView(
                     slivers: [
                       SliverList.list(
@@ -92,21 +161,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           HomeMovieSection(
                             sectionTitle: "Popular",
-                            movieList: _nowPlayingMovies,
-                          ),
-                          const SizedBox(
-                            height: 16,
-                          ),
-                          HomeMovieSection(
-                            sectionTitle: "New Releases",
-                            movieList: _nowPlayingMovies,
+                            movieList: _popularMovies,
                           ),
                           const SizedBox(
                             height: 16,
                           ),
                           HomeMovieSection(
                             sectionTitle: "Top Rated",
-                            movieList: _nowPlayingMovies,
+                            movieList: _topRatedMovies,
                           ),
                           const SizedBox(
                             height: 16,
@@ -120,7 +182,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           HomeMovieSection(
                             sectionTitle: "Coming Soon",
-                            movieList: _nowPlayingMovies,
+                            movieList: _upcomingMovies,
                           ),
                         ],
                       ),

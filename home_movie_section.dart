@@ -1,9 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:imdb_clone/common/services/theme_service.dart';
 import 'package:imdb_clone/home/components/home_movie_list.dart';
-
-import '../../common/services/theme_service.dart';
-import '../models/movie_model.dart';
+import 'package:imdb_clone/home/models/movie_model.dart';
 
 class HomeMovieSection extends StatelessWidget {
   const HomeMovieSection({
@@ -42,8 +40,10 @@ class HomeMovieSection extends StatelessWidget {
           height: 8,
         ),
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.32,
-          child: HomeMovieList(movieList: movieList),
+          height: MediaQuery.of(context).size.height * 0.3,
+          child: HomeMovieList(
+            movieList: movieList,
+          ),
         ),
       ],
     );

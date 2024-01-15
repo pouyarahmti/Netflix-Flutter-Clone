@@ -10,6 +10,7 @@ import 'common/services/dio_service.dart';
 import 'common/services/env_service.dart';
 import 'common/services/logger_service.dart';
 import 'common/services/theme_service.dart';
+import 'home/services/movies_service.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -43,6 +44,7 @@ class _MyAppState extends State<MyApp> {
     EnvironmentService();
     DioService();
     UrlLauncherService();
+    MoviesService();
   }
 
   @override

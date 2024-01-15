@@ -1,3 +1,6 @@
+import 'package:imdb_clone/home/models/movie_genre_model.dart';
+import 'package:imdb_clone/home/services/movies_service.dart';
+
 class Movie {
   final int id;
   final String title;
@@ -5,7 +8,7 @@ class Movie {
   final double vote_average;
   final int vote_count;
   final double popularity;
-  final List<int> genre_ids;
+  final List<MovieGenre> genres;
   final String overview;
   final String poster_path;
 
@@ -16,7 +19,7 @@ class Movie {
     required this.vote_average,
     required this.vote_count,
     required this.popularity,
-    required this.genre_ids,
+    required this.genres,
     required this.overview,
     required this.poster_path,
   });
@@ -29,7 +32,13 @@ class Movie {
       vote_average: json['vote_average'],
       vote_count: json['vote_count'],
       popularity: json['popularity'],
-      genre_ids: List<int>.from(json['genre_ids']),
+      genres: List<MovieGenre>.from(
+        json['genre_ids'].map(
+          (genreId) => MoviesService()
+              .movieGenres
+              .firstWhere((genre) => genre.id == genreId),
+        ),
+      ),
       overview: json['overview'],
       poster_path: json['poster_path'],
     );
