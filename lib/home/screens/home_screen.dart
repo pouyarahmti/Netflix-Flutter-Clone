@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -5,6 +6,7 @@ import 'package:imdb_clone/common/services/theme_service.dart';
 import 'package:imdb_clone/home/components/home_screen_banners_carousel.dart';
 
 import '../../common/services/logger_service.dart';
+import '../components/home_movie_section.dart';
 import '../models/movie_model.dart';
 import '../services/movies_service.dart';
 
@@ -76,16 +78,53 @@ class _HomeScreenState extends State<HomeScreen> {
             : SafeArea(
                 child: Padding(
                   padding: const EdgeInsets.all(16),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        HomeBannersCarousel(
-                          posters: _nowPlayingMovies
-                              .map((e) => e.poster_path)
-                              .toList(),
-                        ),
-                      ],
-                    ),
+                  child: CustomScrollView(
+                    slivers: [
+                      SliverList.list(
+                        children: [
+                          HomeBannersCarousel(
+                            posters: _nowPlayingMovies
+                                .map((e) => e.poster_path)
+                                .toList(),
+                          ),
+                          const SizedBox(
+                            height: 32,
+                          ),
+                          HomeMovieSection(
+                            sectionTitle: "Popular",
+                            movieList: _nowPlayingMovies,
+                          ),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          HomeMovieSection(
+                            sectionTitle: "New Releases",
+                            movieList: _nowPlayingMovies,
+                          ),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          HomeMovieSection(
+                            sectionTitle: "Top Rated",
+                            movieList: _nowPlayingMovies,
+                          ),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          HomeMovieSection(
+                            sectionTitle: "Top Series",
+                            movieList: _nowPlayingMovies,
+                          ),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          HomeMovieSection(
+                            sectionTitle: "Coming Soon",
+                            movieList: _nowPlayingMovies,
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),
