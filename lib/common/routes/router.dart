@@ -10,7 +10,7 @@ import '../../intro/screens/intro_screen.dart';
 
 final router = GoRouter(
   navigatorKey: navigatorKey,
-  initialLocation: "/",
+  initialLocation: HomeScreen.routeName,
   routes: [
     GoRoute(
       path: '/',
