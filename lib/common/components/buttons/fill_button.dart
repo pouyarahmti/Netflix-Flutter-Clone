@@ -74,6 +74,10 @@ class FillButton extends StatelessWidget {
           backgroundColor = ThemeService().currentTheme.secondary;
           break;
 
+        case "secondary":
+          backgroundColor = const Color(0xff2C2C2D);
+          break;
+
         case "error":
           backgroundColor = ThemeService().currentTheme.danger;
 
@@ -129,7 +133,10 @@ class FillButton extends StatelessWidget {
                   textAlign: icon == null ? TextAlign.center : TextAlign.left,
                   style: textStyle ??
                       ThemeService().currentTheme.textDefault.copyWith(
-                            color: Colors.white,
+                            color:
+                                status.name == ButtonStatusEnum.secondary.name
+                                    ? ThemeService().currentTheme.secondary
+                                    : Colors.white,
                             fontSize: size == ButtonSizeEnum.small
                                 ? 16
                                 : buttonText.length < 15

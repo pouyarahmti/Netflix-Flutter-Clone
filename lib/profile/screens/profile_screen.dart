@@ -72,6 +72,7 @@ class ProfileScreen extends StatelessWidget {
             FillButton(
               buttonText: "Sign Out",
               onTap: () {},
+              status: ButtonStatusEnum.secondary,
             ),
           ],
         ),
