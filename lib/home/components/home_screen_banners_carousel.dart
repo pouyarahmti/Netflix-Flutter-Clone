@@ -29,7 +29,7 @@ class _HomeBannersCarouselState extends State<HomeBannersCarousel> {
       height: MediaQuery.of(context).size.height * 0.6,
       child: Column(
         children: [
-          Expanded(
+          Flexible(
             child: CarouselSlider(
               items: widget.posters
                   .map(
@@ -49,7 +49,6 @@ class _HomeBannersCarouselState extends State<HomeBannersCarousel> {
                               const Icon(Icons.error),
                           fit: BoxFit.cover,
                           width: MediaQuery.of(context).size.width,
-                          height: 100,
                         ),
                       ),
                     ),
@@ -57,15 +56,18 @@ class _HomeBannersCarouselState extends State<HomeBannersCarousel> {
                   .toList(),
               carouselController: _controller,
               options: CarouselOptions(
-                  autoPlay: widget.posters.length > 1,
-                  enlargeCenterPage: true,
-                  aspectRatio: 0.8,
-                  viewportFraction: 1,
-                  onPageChanged: (index, reason) {
-                    setState(() {
+                autoPlay: widget.posters.length > 1,
+                enlargeCenterPage: true,
+                aspectRatio: 0.75,
+                viewportFraction: 1,
+                onPageChanged: (index, reason) {
+                  setState(
+                    () {
                       _current = index;
-                    });
-                  }),
+                    },
+                  );
+                },
+              ),
             ),
           ),
           const SizedBox(

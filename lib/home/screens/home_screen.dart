@@ -6,14 +6,13 @@ import 'package:imdb_clone/common/services/theme_service.dart';
 import 'package:imdb_clone/home/components/home_screen_banners_carousel.dart';
 
 import '../../common/services/logger_service.dart';
+import '../../common/services/system_service.dart';
 import '../components/home_movie_section.dart';
 import '../models/movie_model.dart';
 import '../services/movies_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
-
-  static const routeName = '/home';
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -36,6 +35,10 @@ class _HomeScreenState extends State<HomeScreen> {
     try {
       setState(() {
         _isLoading = true;
+        _nowPlayingMovies.clear();
+        _popularMovies.clear();
+        _topRatedMovies.clear();
+        _upcomingMovies.clear();
       });
       await MoviesService().getMovieGenres();
       Future.wait([
@@ -132,64 +135,54 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        SystemChannels.platform.invokeMethod('SystemNavigator.pop');
-        return true;
-      },
-      child: Scaffold(
-        body: _isLoading
-            ? Center(
-                child: CircularProgressIndicator(
-                color: ThemeService().currentTheme.secondary,
-              ))
-            : SafeArea(
-                bottom: false,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-                  child: CustomScrollView(
-                    slivers: [
-                      SliverList.list(
-                        children: [
-                          HomeBannersCarousel(
-                            posters: _nowPlayingMovies
-                                .map((e) => e.poster_path)
-                                .toList(),
-                          ),
-                          const SizedBox(
-                            height: 32,
-                          ),
-                          HomeMovieSection(
-                            sectionTitle: "Popular",
-                            movieList: _popularMovies,
-                          ),
-                          const SizedBox(
-                            height: 16,
-                          ),
-                          HomeMovieSection(
-                            sectionTitle: "Top Rated",
-                            movieList: _topRatedMovies,
-                          ),
-                          const SizedBox(
-                            height: 16,
-                          ),
-                          HomeMovieSection(
-                            sectionTitle: "Top Series",
-                            movieList: _nowPlayingMovies,
-                          ),
-                          const SizedBox(
-                            height: 16,
-                          ),
-                          HomeMovieSection(
-                            sectionTitle: "Coming Soon",
-                            movieList: _upcomingMovies,
-                          ),
-                        ],
-                      ),
-                    ],
+    return RefreshIndicator(
+      onRefresh: () async => getMovies(),
+      color: ThemeService().currentTheme.secondary,
+      child: SafeArea(
+        bottom: false,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+          child: CustomScrollView(
+            slivers: [
+              SliverList.list(
+                children: [
+                  HomeBannersCarousel(
+                    posters:
+                        _nowPlayingMovies.map((e) => e.poster_path).toList(),
                   ),
-                ),
+                  const SizedBox(
+                    height: 32,
+                  ),
+                  HomeMovieSection(
+                    sectionTitle: "Popular",
+                    movieList: _popularMovies,
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  HomeMovieSection(
+                    sectionTitle: "Top Rated",
+                    movieList: _topRatedMovies,
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  HomeMovieSection(
+                    sectionTitle: "Top Series",
+                    movieList: _nowPlayingMovies,
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  HomeMovieSection(
+                    sectionTitle: "Coming Soon",
+                    movieList: _upcomingMovies,
+                  ),
+                ],
               ),
+            ],
+          ),
+        ),
       ),
     );
   }

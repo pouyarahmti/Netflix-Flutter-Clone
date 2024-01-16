@@ -14,6 +14,7 @@ import '../../common/services/dialog_service.dart';
 import '../../common/services/logger_service.dart';
 import '../../common/services/theme_service.dart';
 import '../../common/utils/utils_manager.dart';
+import '../../home/screens/home.dart';
 import '../../home/screens/home_screen.dart';
 
 class SignupForm extends StatefulWidget {
@@ -72,7 +73,7 @@ class _SignupFormState extends State<SignupForm> {
       try {
         await Future.delayed(const Duration(seconds: 2));
         ToastService().showSuccessToast("Signup Successful");
-        context.goNamed(HomeScreen.routeName);
+        context.goNamed(Home.routeName);
       } on DioException catch (e) {
         LoggerService().error(title: "FORGET PASSWORD ERROR", message: e);
         // ToastService().error(context, "Error occurred: ${e.response}");

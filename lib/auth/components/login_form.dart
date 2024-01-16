@@ -13,6 +13,7 @@ import '../../common/services/logger_service.dart';
 import '../../common/services/theme_service.dart';
 import '../../common/services/toast_service.dart';
 import '../../common/utils/utils_manager.dart';
+import '../../home/screens/home.dart';
 import '../../home/screens/home_screen.dart';
 import '../screens/forget_password_screen.dart';
 // import '../../common/utils/utils_manager.dart';
@@ -67,7 +68,7 @@ class _LoginFormState extends State<LoginForm> {
           const Duration(seconds: 2),
         );
         ToastService().showSuccessToast("Login Successful");
-        context.goNamed(HomeScreen.routeName);
+        context.goNamed(Home.routeName);
       } on DioException catch (e) {
         LoggerService().error(title: "LOGIN ERROR", message: e);
         // ToastService().error(context, "Error occurred: ${e.response}");
