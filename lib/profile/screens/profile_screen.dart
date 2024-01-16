@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:imdb_clone/common/components/buttons/fill_button.dart';
 import 'package:imdb_clone/common/services/theme_service.dart';
+
+import '../components/profile_section_item.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -22,35 +25,54 @@ class ProfileScreen extends StatelessWidget {
             const SizedBox(
               height: 16,
             ),
-            Container(
-              color: Colors.red,
-              height: 50,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.person,
-                    color: Colors.white,
-                    size: 32,
-                  ),
-                  const SizedBox(
-                    width: 6,
-                  ),
-                  Text(
-                    "Edit Profile",
-                    style: ThemeService().currentTheme.textDefault.copyWith(
-                          color: Colors.white,
-                          fontSize: 16,
-                        ),
-                  ),
-                  const Spacer(),
-                  const Icon(
-                    Icons.keyboard_arrow_right,
-                    color: Colors.white,
-                  ),
-                ],
+            const CircleAvatar(
+              radius: 50,
+              backgroundImage: NetworkImage(
+                "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
               ),
-            )
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            Text(
+              "Pouya",
+              style: ThemeService().currentTheme.textDefault.copyWith(
+                    color: Colors.white,
+                  ),
+            ),
+            const SizedBox(
+              height: 32,
+            ),
+            ProfileSectionItem(
+              title: "Edit Profile",
+              icon: Icons.person,
+              onTapItem: () {},
+            ),
+            ProfileSectionItem(
+              title: "Subscription",
+              icon: Icons.subscriptions,
+              onTapItem: () {},
+            ),
+            ProfileSectionItem(
+              title: "Devices",
+              icon: Icons.devices,
+              onTapItem: () {},
+            ),
+            ProfileSectionItem(
+              title: "App Settings",
+              icon: Icons.settings,
+              onTapItem: () {},
+            ),
+            ProfileSectionItem(
+              title: "Support",
+              icon: Icons.help_center_rounded,
+              onTapItem: () {},
+            ),
+            const Spacer(),
+            FillButton(
+              buttonText: "Sign Out",
+              onTap: () {},
+            ),
           ],
         ),
       ),
