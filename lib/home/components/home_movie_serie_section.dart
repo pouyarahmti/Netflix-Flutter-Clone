@@ -8,6 +8,7 @@ import '../../common/services/theme_service.dart';
 import '../models/movie_model.dart';
 import '../models/series_model.dart';
 import '../screens/all_movies_screen.dart';
+import '../screens/all_series_screen.dart';
 
 class HomeMovieSerieSection extends StatelessWidget {
   const HomeMovieSerieSection({
@@ -39,8 +40,10 @@ class HomeMovieSerieSection extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 context.goNamed(
-                  movieList.isNotEmpty ? AllMoviesScreen.routeName : 'home',
-                  extra: movieList,
+                  movieList.isNotEmpty
+                      ? AllMoviesScreen.routeName
+                      : AllSeriesScreen.routeName,
+                  extra: movieList.isNotEmpty ? movieList : seriesList,
                 );
               },
               child: Text(

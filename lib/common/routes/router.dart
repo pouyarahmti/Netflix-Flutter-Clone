@@ -6,7 +6,9 @@ import '../../auth/screens/forget_password_screen.dart';
 import '../../auth/screens/login_screen.dart';
 import '../../auth/screens/signup_screen.dart';
 import '../../home/models/movie_model.dart';
+import '../../home/models/series_model.dart';
 import '../../home/screens/all_movies_screen.dart';
+import '../../home/screens/all_series_screen.dart';
 import '../../home/screens/home.dart';
 import '../../home/screens/home_screen.dart';
 import '../../intro/screens/intro_screen.dart';
@@ -55,6 +57,16 @@ final router = GoRouter(
             final moviesList = state.extra! as List<Movie>;
             return AllMoviesScreen(
               movieList: moviesList,
+            );
+          },
+        ),
+        GoRoute(
+          path: AllSeriesScreen.routeName,
+          name: AllSeriesScreen.routeName,
+          builder: (context, state) {
+            final seriesList = state.extra! as List<Serie>;
+            return AllSeriesScreen(
+              serieList: seriesList,
             );
           },
         ),
