@@ -1,0 +1,56 @@
+Date : 2024-01-17 23:34:55
+Directory : /home/pouya/Develop/codes/Flutter/imdb_clone/lib/home/models
+Total : 18 files,  -677 codes, -27 comments, -122 blanks, all -826 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| Dart     |         18 |       -677 |        -27 |       -122 |       -826 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                        | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                           |         18 |       -677 |        -27 |       -122 |       -826 |
+| . (Files)                                                                                   |          4 |        111 |          0 |         14 |        125 |
+| ..                                                                                          |         14 |       -788 |        -27 |       -136 |       -951 |
+| ../..                                                                                       |         14 |       -788 |        -27 |       -136 |       -951 |
+| ../.. (Files)                                                                               |          1 |        -48 |          0 |         -8 |        -56 |
+| ../../auth                                                                                  |          1 |        -19 |          0 |         -5 |        -24 |
+| ../../auth/screens                                                                          |          1 |        -19 |          0 |         -5 |        -24 |
+| ../../common                                                                                |         10 |       -567 |        -27 |       -105 |       -699 |
+| ../../common/components                                                                     |          1 |       -146 |          0 |        -14 |       -160 |
+| ../../common/components/buttons                                                             |          1 |       -146 |          0 |        -14 |       -160 |
+| ../../common/routes                                                                         |          1 |        -26 |          0 |         -3 |        -29 |
+| ../../common/services                                                                       |          7 |       -283 |         -7 |        -62 |       -352 |
+| ../../common/theme                                                                          |          1 |       -112 |        -20 |        -26 |       -158 |
+| ../../intro                                                                                 |          2 |       -154 |          0 |        -18 |       -172 |
+| ../../intro/screens                                                                         |          2 |       -154 |          0 |        -18 |       -172 |
++---------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                                    | language | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| /home/pouya/Develop/codes/Flutter/imdb_clone/lib/auth/screens/login_screen.dart             | Dart     |        -19 |          0 |         -5 |        -24 |
+| /home/pouya/Develop/codes/Flutter/imdb_clone/lib/common/components/buttons/fill_button.dart | Dart     |       -146 |          0 |        -14 |       -160 |
+| /home/pouya/Develop/codes/Flutter/imdb_clone/lib/common/routes/router.dart                  | Dart     |        -26 |          0 |         -3 |        -29 |
+| /home/pouya/Develop/codes/Flutter/imdb_clone/lib/common/services/dio_service.dart           | Dart     |        -24 |          0 |         -7 |        -31 |
+| /home/pouya/Develop/codes/Flutter/imdb_clone/lib/common/services/env_service.dart           | Dart     |        -20 |         -4 |         -9 |        -33 |
+| /home/pouya/Develop/codes/Flutter/imdb_clone/lib/common/services/logger_service.dart        | Dart     |        -96 |          0 |        -15 |       -111 |
+| /home/pouya/Develop/codes/Flutter/imdb_clone/lib/common/services/shared_prefs_service.dart  | Dart     |        -35 |          0 |        -10 |        -45 |
+| /home/pouya/Develop/codes/Flutter/imdb_clone/lib/common/services/theme_service.dart         | Dart     |        -34 |          0 |         -8 |        -42 |
+| /home/pouya/Develop/codes/Flutter/imdb_clone/lib/common/services/toast_service.dart         | Dart     |        -10 |          0 |         -4 |        -14 |
+| /home/pouya/Develop/codes/Flutter/imdb_clone/lib/common/services/url_launcher_service.dart  | Dart     |        -64 |         -3 |         -9 |        -76 |
+| /home/pouya/Develop/codes/Flutter/imdb_clone/lib/common/theme/default_theme.dart            | Dart     |       -112 |        -20 |        -26 |       -158 |
+| /home/pouya/Develop/codes/Flutter/imdb_clone/lib/home/models/movie_genre_model.dart         | Dart     |         14 |          0 |          3 |         17 |
+| /home/pouya/Develop/codes/Flutter/imdb_clone/lib/home/models/movie_model.dart               | Dart     |         43 |          0 |          4 |         47 |
+| /home/pouya/Develop/codes/Flutter/imdb_clone/lib/home/models/series_genre_model.dart        | Dart     |         14 |          0 |          3 |         17 |
+| /home/pouya/Develop/codes/Flutter/imdb_clone/lib/home/models/series_model.dart              | Dart     |         40 |          0 |          4 |         44 |
+| /home/pouya/Develop/codes/Flutter/imdb_clone/lib/intro/screens/intro_screen.dart            | Dart     |       -117 |          0 |        -11 |       -128 |
+| /home/pouya/Develop/codes/Flutter/imdb_clone/lib/intro/screens/splash_screen.dart           | Dart     |        -37 |          0 |         -7 |        -44 |
+| /home/pouya/Develop/codes/Flutter/imdb_clone/lib/main.dart                                  | Dart     |        -48 |          0 |         -8 |        -56 |
+| Total                                                                                       |          |       -677 |        -27 |       -122 |       -826 |
++---------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
