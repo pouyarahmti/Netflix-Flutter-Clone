@@ -16,7 +16,11 @@ class SharedPreferencesService {
   }
 
   Future<void> init() async {
-    _prefs = await SharedPreferences.getInstance();
+    try {
+      _prefs = await SharedPreferences.getInstance();
+    } catch (e) {
+      LoggerService().error(title: "SHARED PREFS SERVICE ERROR", message: e);
+    }
     LoggerService().simple("SHARED PREFS SERVICE INITIALIZED");
   }
 

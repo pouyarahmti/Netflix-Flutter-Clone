@@ -9,7 +9,7 @@ import 'package:imdb_clone/home/screens/home_screen.dart';
 import '../../common/services/logger_service.dart';
 import '../../common/services/system_service.dart';
 import '../../profile/screens/profile_screen.dart';
-import '../components/home_movie_section.dart';
+import '../components/home_movie_serie_section.dart';
 import '../models/movie_model.dart';
 import '../services/movies_service.dart';
 

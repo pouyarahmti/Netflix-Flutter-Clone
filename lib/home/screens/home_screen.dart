@@ -7,9 +7,11 @@ import 'package:imdb_clone/home/components/home_screen_banners_carousel.dart';
 
 import '../../common/services/logger_service.dart';
 import '../../common/services/system_service.dart';
-import '../components/home_movie_section.dart';
+import '../components/home_movie_serie_section.dart';
 import '../models/movie_model.dart';
+import '../models/series_model.dart';
 import '../services/movies_service.dart';
+import '../services/series_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Movie> _popularMovies = [];
   final List<Movie> _topRatedMovies = [];
   final List<Movie> _upcomingMovies = [];
+  final List<Serie> _topRatedSeries = [];
 
   @override
   void initState() {
@@ -39,13 +42,16 @@ class _HomeScreenState extends State<HomeScreen> {
         _popularMovies.clear();
         _topRatedMovies.clear();
         _upcomingMovies.clear();
+        _topRatedSeries.clear();
       });
       await MoviesService().getMovieGenres();
+      await SeriesService().getSeriesGenre();
       Future.wait([
         getNowPlayingMovies(),
         getPopularMovies(),
         getTopRatedMovies(),
         getUpcomingMovies(),
+        getTopRatedSeries(),
       ]);
     } on DioException catch (e) {
       LoggerService().error(title: "GET MOVIES FAILED:", message: e.response);
@@ -133,6 +139,25 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  Future<void> getTopRatedSeries() async {
+    final getTopRatedSeriesResponse = await SeriesService().getTopRatedSeries();
+
+    LoggerService()
+        .simple("GET TOP RATED SERIES SUCCESSFUL: $getTopRatedSeriesResponse");
+
+    final topRatedSeries = List<Serie>.from(
+      getTopRatedSeriesResponse['results'].map(
+        (element) => Serie.fromJson(
+          element,
+        ),
+      ),
+    );
+
+    setState(() {
+      _topRatedSeries.addAll(topRatedSeries);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
@@ -153,28 +178,28 @@ class _HomeScreenState extends State<HomeScreen> {
                   const SizedBox(
                     height: 32,
                   ),
-                  HomeMovieSection(
+                  HomeMovieSerieSection(
                     sectionTitle: "Popular",
                     movieList: _popularMovies,
                   ),
                   const SizedBox(
                     height: 16,
                   ),
-                  HomeMovieSection(
+                  HomeMovieSerieSection(
                     sectionTitle: "Top Rated",
                     movieList: _topRatedMovies,
                   ),
                   const SizedBox(
                     height: 16,
                   ),
-                  HomeMovieSection(
+                  HomeMovieSerieSection(
                     sectionTitle: "Top Series",
-                    movieList: _nowPlayingMovies,
+                    seriesList: _topRatedSeries,
                   ),
                   const SizedBox(
                     height: 16,
                   ),
-                  HomeMovieSection(
+                  HomeMovieSerieSection(
                     sectionTitle: "Coming Soon",
                     movieList: _upcomingMovies,
                   ),

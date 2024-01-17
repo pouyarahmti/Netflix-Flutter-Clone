@@ -44,7 +44,6 @@ class _MyAppState extends State<MyApp> {
     EnvironmentService();
     DioService();
     UrlLauncherService();
-    MoviesService();
   }
 
   @override
