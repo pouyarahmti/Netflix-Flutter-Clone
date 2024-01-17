@@ -28,46 +28,36 @@ class _MovieDetailsScreenBannerCarouselState
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.55,
-      child: Column(
-        children: [
-          Flexible(
-            child: CarouselSlider(
-              items: widget.posters
-                  .map(
-                    (poster) => GestureDetector(
-                      onTap: () {},
-                      child: CachedNetworkImage(
-                        imageUrl:
-                            "https://image.tmdb.org/t/p/original/${poster.posterPath}",
-                        placeholder: (context, url) =>
-                            const Center(child: CircularProgressIndicator()),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
-                        fit: BoxFit.cover,
-                        width: MediaQuery.of(context).size.width,
-                      ),
-                    ),
-                  )
-                  .toList(),
-              carouselController: _controller,
-              options: CarouselOptions(
-                autoPlay: widget.posters.length > 1,
-                enlargeCenterPage: true,
-                aspectRatio: 0.9,
-                viewportFraction: 1,
-                onPageChanged: (index, reason) {
-                  setState(
-                    () {
-                      _current = index;
-                    },
-                  );
-                },
+    return CarouselSlider(
+      items: widget.posters
+          .map(
+            (poster) => GestureDetector(
+              onTap: () {},
+              child: CachedNetworkImage(
+                imageUrl:
+                    "https://image.tmdb.org/t/p/original/${poster.posterPath}",
+                placeholder: (context, url) =>
+                    const Center(child: CircularProgressIndicator()),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+                fit: BoxFit.cover,
+                width: MediaQuery.of(context).size.width,
               ),
             ),
-          ),
-        ],
+          )
+          .toList(),
+      carouselController: _controller,
+      options: CarouselOptions(
+        autoPlay: widget.posters.length > 1,
+        enlargeCenterPage: true,
+        aspectRatio: 0.9,
+        viewportFraction: 1,
+        onPageChanged: (index, reason) {
+          setState(
+            () {
+              _current = index;
+            },
+          );
+        },
       ),
     );
   }

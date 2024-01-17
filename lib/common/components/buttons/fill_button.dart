@@ -124,9 +124,19 @@ class FillButton extends StatelessWidget {
           width: width,
           padding: const EdgeInsets.all(8),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Expanded(
+              if (icon != null || iconWidget != null)
+                iconWidget ??
+                    Icon(
+                      icon,
+                      color: Colors.white,
+                      size: 32,
+                    ),
+              const SizedBox(
+                width: 4,
+              ),
+              Flexible(
                 child: Text(
                   buttonText,
                   maxLines: 2,
@@ -145,18 +155,6 @@ class FillButton extends StatelessWidget {
                           ),
                 ),
               ),
-              if (icon != null || iconWidget != null)
-                Padding(
-                  padding: const EdgeInsets.only(
-                    right: 8,
-                  ),
-                  child: iconWidget ??
-                      Icon(
-                        icon,
-                        color: Colors.white,
-                        size: iconSize,
-                      ),
-                ),
             ],
           ),
         ),
