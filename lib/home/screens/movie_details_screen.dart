@@ -164,7 +164,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                       padding: EdgeInsets.symmetric(
                         horizontal: 16,
                       ),
-                      height: MediaQuery.of(context).size.height * 0.15,
+                      height: MediaQuery.of(context).size.height * 0.2,
                       child: ListView.builder(
                         itemCount: _movieDetail.cast.length,
                         scrollDirection: Axis.horizontal,
@@ -200,6 +200,20 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                                 ),
                                 Text(
                                   _movieDetail.cast[index].name,
+                                  style: ThemeService()
+                                      .currentTheme
+                                      .textDefault
+                                      .copyWith(
+                                        color:
+                                            ThemeService().currentTheme.white,
+                                        fontSize: 14,
+                                      ),
+                                ),
+                                const SizedBox(
+                                  height: 4,
+                                ),
+                                Text(
+                                  _movieDetail.cast[index].character,
                                   style: ThemeService()
                                       .currentTheme
                                       .textDefault
