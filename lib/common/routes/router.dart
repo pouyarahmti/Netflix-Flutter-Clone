@@ -11,6 +11,7 @@ import '../../home/screens/all_movies_screen.dart';
 import '../../home/screens/all_series_screen.dart';
 import '../../home/screens/home.dart';
 import '../../home/screens/home_screen.dart';
+import '../../home/screens/movie_details_screen.dart';
 import '../../intro/screens/intro_screen.dart';
 import '../../profile/screens/profile_screen.dart';
 
@@ -51,15 +52,26 @@ final router = GoRouter(
       builder: (context, state) => const Home(),
       routes: [
         GoRoute(
-          path: AllMoviesScreen.routeName,
-          name: AllMoviesScreen.routeName,
-          builder: (context, state) {
-            final moviesList = state.extra! as List<Movie>;
-            return AllMoviesScreen(
-              movieList: moviesList,
-            );
-          },
-        ),
+            path: AllMoviesScreen.routeName,
+            name: AllMoviesScreen.routeName,
+            builder: (context, state) {
+              final moviesList = state.extra! as List<Movie>;
+              return AllMoviesScreen(
+                movieList: moviesList,
+              );
+            },
+            routes: [
+              GoRoute(
+                path: MovieDetailsScreen.routeName,
+                name: MovieDetailsScreen.routeName,
+                builder: (context, state) {
+                  final movie = state.extra! as Movie;
+                  return MovieDetailsScreen(
+                    movie: movie,
+                  );
+                },
+              ),
+            ]),
         GoRoute(
           path: AllSeriesScreen.routeName,
           name: AllSeriesScreen.routeName,

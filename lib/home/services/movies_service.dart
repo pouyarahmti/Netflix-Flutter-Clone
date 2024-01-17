@@ -76,6 +76,25 @@ class MoviesService {
     return response.data;
   }
 
+  Future<dynamic> getMovieDetails({
+    required int movieId,
+  }) async {
+    final apiToken = EnvironmentService().apiBearerToken;
+    final response = await DioService().dio.get(
+      "/movie/$movieId",
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": apiToken,
+        },
+      ),
+      queryParameters: {
+        "append_to_response": "videos,credits,images",
+      },
+    );
+    return response.data;
+  }
+
   Future<dynamic> getMovieGenres() async {
     final apiToken = EnvironmentService().apiBearerToken;
     final response = await DioService().dio.get(
