@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:imdb_clone/home/components/home_movie_list.dart';
 import 'package:imdb_clone/home/components/home_series_list.dart';
 
 import '../../common/services/theme_service.dart';
 import '../models/movie_model.dart';
 import '../models/series_model.dart';
+import '../screens/all_movies_screen.dart';
 
 class HomeMovieSerieSection extends StatelessWidget {
   const HomeMovieSerieSection({
@@ -34,11 +36,19 @@ class HomeMovieSerieSection extends StatelessWidget {
                     color: Colors.white,
                   ),
             ),
-            Text(
-              "See all",
-              style: ThemeService().currentTheme.textDefault.copyWith(
-                    color: ThemeService().currentTheme.gray,
-                  ),
+            GestureDetector(
+              onTap: () {
+                context.goNamed(
+                  movieList.isNotEmpty ? AllMoviesScreen.routeName : 'home',
+                  extra: movieList,
+                );
+              },
+              child: Text(
+                "See all",
+                style: ThemeService().currentTheme.textDefault.copyWith(
+                      color: ThemeService().currentTheme.gray,
+                    ),
+              ),
             )
           ],
         ),

@@ -5,6 +5,8 @@ import 'package:imdb_clone/main.dart';
 import '../../auth/screens/forget_password_screen.dart';
 import '../../auth/screens/login_screen.dart';
 import '../../auth/screens/signup_screen.dart';
+import '../../home/models/movie_model.dart';
+import '../../home/screens/all_movies_screen.dart';
 import '../../home/screens/home.dart';
 import '../../home/screens/home_screen.dart';
 import '../../intro/screens/intro_screen.dart';
@@ -45,6 +47,18 @@ final router = GoRouter(
       path: Home.routeName,
       name: Home.routeName,
       builder: (context, state) => const Home(),
+      routes: [
+        GoRoute(
+          path: AllMoviesScreen.routeName,
+          name: AllMoviesScreen.routeName,
+          builder: (context, state) {
+            final moviesList = state.extra! as List<Movie>;
+            return AllMoviesScreen(
+              movieList: moviesList,
+            );
+          },
+        ),
+      ],
     ),
     GoRoute(
       path: ProfileScreen.routeName,

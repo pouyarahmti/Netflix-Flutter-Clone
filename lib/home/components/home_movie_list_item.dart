@@ -25,8 +25,9 @@ class HomeMovieListItem extends StatelessWidget {
               child: CachedNetworkImage(
                 imageUrl:
                     "https://image.tmdb.org/t/p/original/${movie.poster_path}",
-                placeholder: (context, url) =>
-                    const Center(child: CircularProgressIndicator()),
+                placeholder: (context, url) => Center(
+                    child: CircularProgressIndicator(
+                        color: ThemeService().currentTheme.secondary)),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
                 fit: BoxFit.fill,
               ),
