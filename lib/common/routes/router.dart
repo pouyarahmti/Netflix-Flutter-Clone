@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:imdb_clone/intro/screens/splash_screen.dart';
 import 'package:imdb_clone/main.dart';
+import 'package:imdb_clone/saved/screens/saved_movies_main_screen.dart';
 
 import '../../auth/screens/forget_password_screen.dart';
 import '../../auth/screens/login_screen.dart';
@@ -14,6 +15,7 @@ import '../../home/screens/home_screen.dart';
 import '../../home/screens/movie_details_screen.dart';
 import '../../intro/screens/intro_screen.dart';
 import '../../profile/screens/profile_screen.dart';
+import '../../search/screens/movie_search_main_screen.dart';
 
 final router = GoRouter(
   navigatorKey: navigatorKey,
@@ -88,6 +90,16 @@ final router = GoRouter(
       path: ProfileScreen.routeName,
       name: ProfileScreen.routeName,
       builder: (context, state) => const ProfileScreen(),
+    ),
+    GoRoute(
+      path: MovieSearchMainScreen.routeName,
+      name: MovieSearchMainScreen.routeName,
+      builder: (context, state) => const MovieSearchMainScreen(),
+    ),
+    GoRoute(
+      path: SavedMoviesMainScreen.routeName,
+      name: SavedMoviesMainScreen.routeName,
+      builder: (context, state) => const SavedMoviesMainScreen(),
     ),
   ],
 );

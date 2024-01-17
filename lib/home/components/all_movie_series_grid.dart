@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:imdb_clone/home/screens/movie_details_screen.dart';
 
 import '../models/movie_model.dart';
 import '../models/series_model.dart';
@@ -29,9 +31,20 @@ class AllMovieSeriesGrid extends StatelessWidget {
       ),
       itemBuilder: (context, index) {
         if (movieList.isNotEmpty) {
-          return AllMovieSeriesGridItem(movie: movieList[index]);
+          return AllMovieSeriesGridItem(
+            movie: movieList[index],
+            onTap: () {
+              context.pushNamed(
+                MovieDetailsScreen.routeName,
+                extra: movieList[index],
+              );
+            },
+          );
         } else {
-          return AllMovieSeriesGridItem(serie: serieList[index]);
+          return AllMovieSeriesGridItem(
+            serie: serieList[index],
+            onTap: () {},
+          );
         }
       },
     );

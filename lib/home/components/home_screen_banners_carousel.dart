@@ -35,8 +35,8 @@ class _HomeBannersCarouselState extends State<HomeBannersCarousel> {
                   .map(
                     (poster) => GestureDetector(
                       onTap: () {
-                        UrlLauncherService().launchURL(
-                            "https://image.tmdb.org/t/p/original/$poster");
+                        // UrlLauncherService().launchURL(
+                        //     "https://image.tmdb.org/t/p/original/$poster");
                       },
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(16),

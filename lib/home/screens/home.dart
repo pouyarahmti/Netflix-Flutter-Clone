@@ -5,10 +5,12 @@ import 'package:flutter/services.dart';
 import 'package:imdb_clone/common/services/theme_service.dart';
 import 'package:imdb_clone/home/components/home_screen_banners_carousel.dart';
 import 'package:imdb_clone/home/screens/home_screen.dart';
+import 'package:imdb_clone/search/screens/movie_search_main_screen.dart';
 
 import '../../common/services/logger_service.dart';
 import '../../common/services/system_service.dart';
 import '../../profile/screens/profile_screen.dart';
+import '../../saved/screens/saved_movies_main_screen.dart';
 import '../components/home_movie_serie_section.dart';
 import '../models/movie_model.dart';
 import '../services/movies_service.dart';
@@ -27,8 +29,8 @@ class _HomeState extends State<Home> {
 
   final List<Widget> _screens = [
     const HomeScreen(),
-    const ProfileScreen(),
-    const ProfileScreen(),
+    const MovieSearchMainScreen(),
+    const SavedMoviesMainScreen(),
     const ProfileScreen(),
   ];
 
